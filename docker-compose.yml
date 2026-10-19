@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: horizonte
+      POSTGRES_USER: horizonte
+      POSTGRES_PASSWORD: horizonte
+    ports: ["5432:5432"]
+    volumes: ["hzdata:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U horizonte"]
+      interval: 5s
+      retries: 10
+
+  app:
+    build: .
+    depends_on:
+      db: { condition: service_healthy }
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/horizonte
+      DB_USER: horizonte
+      DB_PASSWORD: horizonte
+      DB_DRIVER: org.postgresql.Driver
+      JPA_DDL_AUTO: update
+      FRONTEND_ORIGINS: http://localhost:8080,http://localhost:5173
+      SEED_ENABLED: "true"
+    ports: ["8080:8080"]
+
+volumes:
+  hzdata:

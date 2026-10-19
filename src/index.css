@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+/* ===========================================================================
+   CENTRO ODONTOLÓGICO HORIZONTE — Sistema de diseño
+
+   Paleta tomada de la fachada y del logotipo de la clínica: negro del letrero,
+   azul de las letras y blanco. El azul marino del afiche aparece sólo como
+   profundidad en los degradados.
+
+     negro   fondos principales: cabecera, tratamientos, cierre, pie
+     azul    el del letrero (#0693C5) para acentos; una versión más oscura para
+             botones, de modo que el texto blanco tenga contraste AA
+     blanco  secciones de lectura y tarjetas
+
+   Los nombres de las variables (marea, hz, celeste) se mantienen del primer
+   diseño: así cualquier componente nuevo ya nace con la paleta correcta.
+   =========================================================================== */
+
+:root {
+  /* --- Color --- */
+  --marea-950: #04060A;
+  --marea-900: #090D13;   /* negro principal */
+  --marea-800: #0F1620;
+  --marea-700: #172230;
+  --marino:    #082848;   /* azul marino del afiche, para degradados */
+
+  --hz-800: #05577A;
+  --hz-700: #066A94;
+  --hz-600: #0579A8;      /* botones: 4,9:1 con texto blanco */
+  --hz-500: #0693C5;      /* azul del letrero */
+  --hz-400: #2DB0E0;      /* azul sobre negro: 7:1 */
+  --hz-300: #7DCCEB;
+
+  --celeste-200: #C3E6F5;
+  --celeste-100: #DDF1FA;
+  --celeste-50:  #EEF8FD;
+
+  --bruma:   #F4F9FC;
+  --blanco:  #FFFFFF;
+
+  --ink:       #090D13;
+  --ink-soft:  #3C4856;   /* 9:1 sobre blanco */
+  --ink-faint: #5A6877;   /* 5,7:1 sobre blanco */
+  --on-dark:       #F4F9FC;
+  --on-dark-soft:  #B4C6D3;   /* 10:1 sobre negro */
+
+  --line:       rgba(9, 13, 19, .12);
+  --line-strong: rgba(9, 13, 19, .24);
+  --line-dark:  rgba(125, 204, 235, .20);
+
+  --ok:   #1B7F5A;  --ok-bg:  #E7F6EF;
+  --warn: #8A5A10;  --warn-bg: #FDF3E2;
+  --err:  #B3261E;  --err-bg: #FCECEA;
+
+  /* --- Forma --- */
+  --r-sm: 10px;
+  --r:    18px;
+  --r-lg: 28px;
+  --r-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(4, 6, 10, .06), 0 8px 18px -10px rgba(4, 30, 60, .22);
+  --shadow:    0 2px 4px rgba(4, 6, 10, .05), 0 30px 60px -30px rgba(4, 40, 80, .38);
+  --glow:      0 0 0 1px rgba(45, 176, 224, .55), 0 18px 48px -14px rgba(6, 147, 197, .55);
+
+  /* --- Tipografía --- */
+  --font-display: 'Fraunces Variable', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-ui: 'Figtree Variable', 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* --- Medidas --- */
+  --header-h: 80px;
+  --container: 1200px;
+  --gutter: clamp(20px, 5vw, 56px);
+
+  color-scheme: light;
+}
+@media (max-width: 520px) { :root { --header-h: 68px; } }
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; }
+}
+
+body {
+  font-family: var(--font-ui);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  background: var(--marea-900);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+ul, ol { list-style: none; }
+
+:focus-visible { outline: 3px solid var(--hz-500); outline-offset: 3px; border-radius: 6px; }
+.hdr :focus-visible, .section--dark :focus-visible, .section--azul :focus-visible, .cierre :focus-visible, .ftr :focus-visible, .pagehead :focus-visible, .hero :focus-visible { outline-color: var(--hz-300); }
+::selection { background: var(--hz-400); color: var(--marea-950); }
+
+/* ===========================================================================
+   Primitivas
+   =========================================================================== */
+
+.container { width: min(var(--container), 100% - var(--gutter) * 2); margin-inline: auto; }
+
+/* Títulos: serif ligera; el tamaño y el peso hacen la jerarquía. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 380;
+  font-optical-sizing: auto;
+  letter-spacing: -.018em;
+  line-height: 1.04;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.h1 { font-size: clamp(2.7rem, 6.6vw, 5.1rem); }
+.h2 { font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.08; }
+.h3 { font-size: clamp(1.5rem, 2.4vw, 1.9rem); line-height: 1.15; font-weight: 380; letter-spacing: -.012em; }
+.lead { font-size: clamp(1.08rem, 1.5vw, 1.25rem); line-height: 1.6; color: var(--ink-soft); max-width: 58ch; text-wrap: pretty; }
+.muted { color: var(--ink-soft); }
+
+/* Texto de apoyo sobre un título: una línea corta que dice dónde estás. */
+.kicker {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: .95rem; font-weight: 600; color: var(--hz-600);
+}
+.kicker::before {
+  content: ""; width: 9px; height: 9px; flex: 0 0 auto; border-radius: 50%;
+  border: 2px solid currentColor;
+}
+
+/* Secciones: el padding vive sólo aquí para que ninguna otra regla lo pise. */
+.section { padding-block: clamp(64px, 9vw, 120px); }
+.section--white { background: var(--blanco); }
+.section--bruma { background: var(--bruma); }
+/* Sección sobre negro: los títulos y el texto cambian solos. */
+.section--dark { position: relative; background: var(--marea-900); color: var(--on-dark); }
+.section--dark .display, .section--azul .display { color: #fff; }
+.section--dark .lead, .section--dark .muted, .section--azul .lead, .section--azul .muted { color: var(--on-dark-soft); }
+.section--dark .kicker, .section--azul .kicker { color: var(--hz-300); }
+.section--dark .link-arrow, .section--azul .link-arrow { color: var(--hz-300); }
+/* Sección en azul profundo: degradado del marino al azul del letrero. */
+.section--azul { position: relative; overflow: hidden; color: #fff; background: linear-gradient(135deg, var(--marino) 0%, #0A4F78 52%, var(--hz-600) 130%); }
+.section--tight { padding-block: clamp(40px, 5vw, 64px); }
+
+.section__head { max-width: 40rem; margin-bottom: clamp(32px, 4.5vw, 56px); display: grid; gap: 16px; justify-items: start; }
+
+/* Botones */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 0 28px; border: 1.5px solid transparent; border-radius: var(--r-pill);
+  font-weight: 650; font-size: 1rem; letter-spacing: .005em; line-height: 1;
+  cursor: pointer; white-space: nowrap;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+.btn svg { flex: 0 0 auto; }
+.btn--primary { background: var(--hz-600); color: #fff; box-shadow: 0 12px 28px -12px rgba(6, 147, 197, .85); }
+.btn--primary:hover { background: var(--hz-700); box-shadow: 0 16px 32px -12px rgba(6, 147, 197, .9); }
+.btn--ghost { background: transparent; border-color: var(--line-strong); color: var(--ink); }
+.btn--ghost:hover { border-color: var(--hz-600); color: var(--hz-700); background: var(--celeste-50); }
+.btn--light { background: #fff; color: var(--marea-900); }
+.btn--light:hover { background: var(--celeste-100); }
+.btn--azul { background: var(--hz-500); color: var(--marea-950); box-shadow: 0 12px 28px -12px rgba(45, 176, 224, .8); }
+.btn--azul:hover { background: var(--hz-400); }
+.btn--ondark { background: transparent; border-color: rgba(255,255,255,.45); color: #fff; }
+.btn--ondark:hover { background: rgba(255,255,255,.12); border-color: #fff; }
+.btn--sm { min-height: 44px; padding: 0 20px; font-size: .94rem; }
+.btn[disabled] { opacity: .55; cursor: not-allowed; }
+
+/* Enlace con flecha que avanza al pasar el cursor */
+.link-arrow { display: inline-flex; align-items: center; gap: 8px; font-weight: 650; color: var(--hz-700); }
+.link-arrow svg { transition: transform .2s ease; }
+.link-arrow:hover svg { transform: translateX(4px); }
+.link-arrow:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* La línea de horizonte: el hilo que une el sitio */
+.horizon-rule { height: 1px; background: linear-gradient(90deg, transparent, var(--hz-300) 12%, var(--hz-300) 88%, transparent); }
+
+/* Utilidades */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip {
+  position: absolute; left: 12px; top: -64px; z-index: 300;
+  background: var(--hz-600); color: #fff; padding: 12px 18px;
+  border-radius: var(--r-sm); font-weight: 650; transition: top .2s ease;
+}
+.skip:focus { top: 12px; }

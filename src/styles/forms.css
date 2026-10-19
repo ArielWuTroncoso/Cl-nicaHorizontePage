@@ -1,0 +1,128 @@
+/* ===========================================================================
+   Formularios, avisos, acceso de administración, bienvenida y panel.
+   =========================================================================== */
+
+/* --- Campos --- */
+.field { display: grid; gap: 8px; margin-bottom: 20px; border: 0; min-width: 0; }
+.field label, .field legend { font-size: .94rem; font-weight: 600; color: var(--ink); padding: 0; }
+.field .req, .form-card .req { color: var(--err); margin-left: 2px; }
+.field__opt { font-weight: 500; color: var(--ink-faint); }
+.field input:not([type="radio"]):not([type="checkbox"]), .field select, .field textarea {
+  width: 100%; min-height: 52px; padding: 13px 16px;
+  background: #fff; border: 1.5px solid var(--line-strong); border-radius: var(--r-sm);
+  font-size: 1rem; transition: border-color .18s ease, box-shadow .18s ease;
+}
+.field textarea { min-height: 132px; resize: vertical; line-height: 1.55; }
+.field input:not([type="radio"]):not([type="checkbox"]):focus, .field select:focus, .field textarea:focus {
+  border-color: var(--hz-500); box-shadow: 0 0 0 4px rgba(6, 147, 197, .22); outline: none;
+}
+.field ::placeholder { color: #76879A; }
+.field--err input, .field--err select, .field--err textarea { border-color: var(--err); }
+.field__err { font-size: .88rem; font-weight: 600; color: var(--err); }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; align-items: start; }
+@media (max-width: 620px) { .field-row { grid-template-columns: 1fr; } }
+
+/* Opciones en pastilla (horario preferido) */
+.choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.choice { position: relative; cursor: pointer; }
+.choice input { position: absolute; opacity: 0; inset: 0; }
+.choice span {
+  display: grid; text-align: center; gap: 1px; min-height: 52px; align-content: center; padding: 6px 10px;
+  border: 1.5px solid var(--line-strong); border-radius: var(--r-sm); background: #fff; line-height: 1.25;
+  transition: border-color .18s ease, background-color .18s ease;
+}
+.choice small { font-size: .8rem; color: var(--ink-faint); }
+.choice:hover span { border-color: var(--hz-500); }
+.choice input:checked + span { border-color: var(--hz-600); background: var(--celeste-50); box-shadow: inset 0 0 0 1px var(--hz-600); }
+.choice input:focus-visible + span { outline: 3px solid var(--hz-500); outline-offset: 2px; }
+
+.check { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; cursor: pointer; font-weight: 550; }
+.check input { width: 22px; height: 22px; flex: 0 0 22px; accent-color: var(--hz-600); }
+
+/* Tarjeta del formulario de reserva */
+.form-card { padding: clamp(24px, 4vw, 44px); background: #fff; border: 1px solid var(--line); border-top: 3px solid var(--hz-500); border-radius: var(--r-lg); box-shadow: var(--shadow); }
+.form-card__nota { margin: 6px 0 24px; font-size: .95rem; }
+.form-card__sub { margin: 12px 0 20px; padding-top: 28px; border-top: 1px solid var(--line); }
+.form-card__submit { margin-top: 6px; }
+.form-card__legal { margin-top: 16px; font-size: .86rem; line-height: 1.5; color: var(--ink-faint); max-width: 60ch; }
+@media (max-width: 520px) { .form-card__submit { width: 100%; } }
+
+/* --- Avisos --- */
+.alert { padding: 14px 18px; border-radius: var(--r-sm); font-size: .96rem; font-weight: 550; margin-bottom: 22px; line-height: 1.5; }
+.alert--err { background: var(--err-bg); color: #8E1C16; border: 1px solid rgba(179, 38, 30, .28); }
+.alert--ok  { background: var(--ok-bg);  color: #135E42; border: 1px solid rgba(27, 127, 90, .28); }
+
+/* --- Acceso de administración --- */
+.auth { min-height: calc(100vh - var(--header-h)); display: grid; grid-template-columns: 1fr 1fr; background: #fff; }
+.auth__visual { position: relative; overflow: hidden; display: grid; place-content: center; padding: clamp(36px, 5vw, 72px); background: radial-gradient(70% 60% at 80% 100%, rgba(6, 147, 197, .4), transparent 70%), var(--marea-900); color: var(--on-dark); }
+.auth__art { position: absolute; left: -60px; right: -60px; bottom: 0; width: calc(100% + 120px); height: auto; pointer-events: none; opacity: .8; }
+.auth__visual-inner { position: relative; z-index: 1; max-width: 440px; display: grid; gap: 4px; }
+.auth__visual h2 { color: #fff; margin: 28px 0 14px; }
+.auth__visual p { color: var(--on-dark-soft); line-height: 1.6; margin-bottom: 26px; }
+.auth__points { display: grid; gap: 14px; }
+.auth__points li { display: flex; gap: 11px; align-items: flex-start; font-size: .98rem; color: var(--on-dark-soft); }
+.auth__points svg { color: var(--hz-400); flex: 0 0 auto; margin-top: 4px; }
+@media (max-width: 900px) { .auth { grid-template-columns: 1fr; } .auth__visual { display: none; } }
+
+.auth__panel { display: grid; place-content: center; padding: clamp(32px, 5vw, 64px); }
+.auth__form { width: min(440px, 100%); }
+.auth__form h1 { font-size: clamp(1.9rem, 3.4vw, 2.5rem); margin-bottom: 10px; }
+.auth__form > p, .auth__lead { color: var(--ink-soft); margin-bottom: 28px; }
+.auth__submit { width: 100%; margin-top: 8px; }
+.auth__alt { margin-top: 22px; text-align: center; font-size: .94rem; color: var(--ink-soft); }
+.auth__link { background: none; border: 0; padding: 0; cursor: pointer; font: inherit; font-weight: 650; color: var(--hz-700); }
+.auth__link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.auth__tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; margin-bottom: 28px; background: var(--bruma); border: 1px solid var(--line-strong); border-radius: var(--r-pill); }
+.auth__tabs button { min-height: 44px; padding: 0 14px; border: 0; border-radius: var(--r-pill); background: transparent; cursor: pointer; font-weight: 650; font-size: .95rem; color: var(--ink-soft); transition: background-color .18s ease, color .18s ease; }
+.auth__tabs button:hover { color: var(--ink); }
+.auth__tabs button.is-active { background: var(--marea-900); color: #fff; box-shadow: var(--shadow-sm); }
+
+/* Contraseña: botón mostrar/ocultar y condiciones */
+.pw { position: relative; }
+.pw input { padding-right: 52px !important; }
+.pw__toggle { position: absolute; top: 0; right: 0; bottom: 0; width: 50px; display: grid; place-items: center; background: transparent; border: 0; border-radius: 0 var(--r-sm) var(--r-sm) 0; cursor: pointer; color: var(--ink-faint); }
+.pw__toggle:hover { color: var(--hz-700); }
+.pw-rules { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px; margin-top: 4px; }
+.pw-rules li { display: flex; align-items: center; gap: 7px; font-size: .84rem; color: var(--ink-faint); }
+.pw-rules li svg { flex: 0 0 auto; }
+.pw-rules li.is-ok { color: var(--ok); font-weight: 600; }
+@media (max-width: 420px) { .pw-rules { grid-template-columns: 1fr; } }
+
+/* --- Bienvenida al perfil --- */
+.modal { position: fixed; inset: 0; z-index: 300; display: grid; place-items: center; padding: 20px; overflow-y: auto; background: rgba(4, 6, 10, .78); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); animation: modal-fondo .2s ease; }
+.modal__card { width: min(480px, 100%); padding: clamp(24px, 4vw, 38px); background: #fff; border-radius: var(--r-lg); box-shadow: var(--shadow); animation: modal-entrada .26s ease; }
+.modal__icon { display: grid; place-items: center; width: 56px; height: 56px; margin-bottom: 18px; border-radius: 50%; color: var(--hz-700); background: var(--celeste-100); }
+.modal__card h2 { font-size: clamp(1.7rem, 4vw, 2.2rem); margin: 12px 0 8px; }
+.modal__card > p { color: var(--ink-soft); line-height: 1.55; }
+.modal__perfil { display: grid; margin: 20px 0; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.modal__perfil > div { display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 11px 16px; border-bottom: 1px solid var(--line); }
+.modal__perfil > div:last-child { border-bottom: 0; }
+.modal__perfil dt { font-size: .86rem; font-weight: 600; color: var(--ink-faint); align-self: center; }
+.modal__perfil dd { font-weight: 600; font-size: .96rem; overflow-wrap: anywhere; }
+.modal__lista { display: grid; gap: 10px; margin-bottom: 18px; }
+.modal__lista li { display: flex; gap: 11px; align-items: flex-start; font-size: .94rem; color: var(--ink-soft); line-height: 1.5; }
+.modal__lista svg { color: var(--hz-600); flex: 0 0 auto; margin-top: 3px; }
+.modal__nota { font-size: .86rem; color: var(--ink-faint); margin-bottom: 22px; }
+.modal__cta { width: 100%; }
+@keyframes modal-fondo { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modal-entrada { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
+@media (max-width: 420px) { .modal__perfil > div { grid-template-columns: 1fr; gap: 2px; } }
+
+/* --- Panel de solicitudes --- */
+.admin__bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+.admin__count { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--ink-soft); }
+.admin__count svg { color: var(--hz-600); }
+.admin__scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); }
+.admin__table { width: 100%; min-width: 860px; border-collapse: collapse; }
+.admin__table th { padding: 14px 16px; text-align: left; font-size: .86rem; font-weight: 650; color: var(--ink-faint); background: var(--bruma); border-bottom: 1px solid var(--line); }
+.admin__table td { padding: 16px; vertical-align: top; border-bottom: 1px solid var(--line); font-size: .95rem; }
+.admin__table tr:last-child td { border-bottom: 0; }
+.admin__table a { color: var(--hz-700); }
+.admin__table a:hover { text-decoration: underline; }
+.admin__sub { color: var(--ink-faint); font-size: .88rem; }
+.admin__msg { margin-top: 6px; max-width: 34ch; font-size: .88rem; color: var(--ink-soft); line-height: 1.45; }
+.admin__tag { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: var(--r-pill); background: var(--celeste-100); color: var(--hz-800); font-size: .76rem; font-weight: 650; }
+.admin__state { display: inline-block; padding: 4px 12px; border-radius: var(--r-pill); font-size: .82rem; font-weight: 650; }
+.admin__state--on { background: var(--ok-bg); color: var(--ok); }
+.admin__state--off { background: var(--warn-bg); color: var(--warn); }

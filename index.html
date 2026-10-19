@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <title>Centro Odontológico Horizonte · Concepción</title>
+    <meta name="description" content="Centro odontológico en Concepción: carillas, restauraciones, limpiezas, implantes, endodoncias, coronas y prótesis. Reserva tu hora." />
+    <meta name="theme-color" content="#090D13" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Centro Odontológico Horizonte" />
+    <meta property="og:title" content="Centro Odontológico Horizonte · Tu sonrisa, nuestra prioridad" />
+    <meta property="og:description" content="Cuidamos tu salud y tu sonrisa en Concepción. Reserva tu hora." />
+    <meta property="og:image" content="/img/fachada.webp" />
+    <meta property="og:locale" content="es_CL" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Datos estructurados para Google. Si cambian horario, teléfono o dirección, actualizar aquí
+         y en src/data/clinica.js. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Dentist",
+      "name": "Centro Odontológico Horizonte",
+      "description": "Centro odontológico en Concepción. Tu sonrisa, nuestra prioridad.",
+      "telephone": "+56930078427",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "O'Higgins 1320",
+        "addressLocality": "Concepción",
+        "addressRegion": "Biobío",
+        "addressCountry": "CL"
+      },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }],
+      "sameAs": ["https://www.instagram.com/horizonteclinicadental/"]
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
