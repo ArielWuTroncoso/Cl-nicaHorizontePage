@@ -1,6 +1,5 @@
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Horizonte from '../brand/Horizonte';
 
 /**
  * Cabecera de las páginas interiores, sobre negro: migas, título y, si se pasa
@@ -10,7 +9,7 @@ export default function PageHeader({ titulo, descripcion, migas = [], imagen, ch
   return (
     <section className="pagehead">
       <div className="pagehead__bg" aria-hidden="true">
-        <Horizonte tono="oscuro" conDiente={false} className="pagehead__art" />
+        <div className="trama" aria-hidden="true" />
       </div>
       <div className={`container pagehead__wrap${imagen ? ' has-fig' : ''}`}>
         <div className="pagehead__inner">

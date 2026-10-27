@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { CalendarCheck, MessageCircle, Phone } from 'lucide-react';
-import Horizonte from '../brand/Horizonte';
 import { CLINICA, enlaceWhatsApp } from '../../data/clinica';
 import { IMG } from '../../data/imagenes';
 
@@ -9,7 +8,7 @@ export default function BloqueReserva({ titulo = 'Agenda tu hora y cuéntanos qu
   return (
     <section className="cierre" aria-labelledby="cierre-titulo">
       <div className="cierre__bg" aria-hidden="true">
-        <Horizonte tono="oscuro" conDiente={false} className="cierre__art" />
+        <div className="trama" aria-hidden="true" />
       </div>
       <div className="container cierre__inner">
         <div className="cierre__texto">
@@ -28,7 +27,7 @@ export default function BloqueReserva({ titulo = 'Agenda tu hora y cuéntanos qu
           </a>
         </div>
         <figure className="cierre__foto">
-          <img src={IMG.sonrisaBanda.src} width={IMG.sonrisaBanda.width} height={IMG.sonrisaBanda.height} alt={IMG.sonrisaBanda.alt} loading="lazy" />
+          <img src={IMG.paciente.src} width={IMG.paciente.width} height={IMG.paciente.height} alt={IMG.paciente.alt} loading="lazy" />
         </figure>
       </div>
     </section>

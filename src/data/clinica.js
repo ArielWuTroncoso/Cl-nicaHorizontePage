@@ -27,6 +27,22 @@ export const CLINICA = {
   },
 };
 
+/**
+ * Rayos X: la clínica los tiene dentro, así que la radiografía se toma en la misma visita.
+ * Los textos son informativos; el odontólogo indica cuándo hace falta cada una.
+ */
+export const RAYOS_X = {
+  titulo: 'Rayos X dentro de la clínica',
+  resumen: 'Si tu odontólogo necesita una radiografía, la tomamos aquí mismo.',
+  detalle: 'Así revisas con él lo que no se ve a simple vista, en la misma visita y sin tener que ir a otro lugar.',
+  puntos: [
+    ['Raíces y conductos', 'Su forma y su estado, antes y después de un tratamiento.'],
+    ['Caries entre dientes', 'Las que se esconden donde el espejo no llega.'],
+    ['Hueso que sostiene tus dientes', 'Clave para planificar implantes y prótesis.'],
+  ],
+  nota: 'Tu odontólogo indica cuándo hace falta una radiografía.',
+};
+
 /** Enlace de WhatsApp al número de la clínica, con un mensaje opcional ya escrito. */
 export function enlaceWhatsApp(mensaje = 'Hola, quisiera reservar una hora en Horizonte.') {
   return `https://wa.me/${TEL.replace('+', '')}?text=${encodeURIComponent(mensaje)}`;
@@ -53,7 +69,11 @@ export const PREGUNTAS = [
   },
   {
     q: '¿Qué pasa en la primera visita?',
-    a: 'Conversamos sobre lo que te preocupa, revisamos tu boca y, si hace falta, pedimos radiografías. Con eso te explicamos las opciones y armamos un plan de tratamiento contigo.',
+    a: 'Conversamos sobre lo que te preocupa, revisamos tu boca y, si hace falta, tomamos radiografías en la misma clínica. Con eso te explicamos las opciones y armamos un plan de tratamiento contigo.',
+  },
+  {
+    q: '¿Tienen rayos X en la clínica?',
+    a: 'Sí. Tenemos rayos X dentro de la clínica, así que si tu odontólogo necesita una radiografía la tomamos en la misma visita. Él te indica cuándo hace falta.',
   },
   {
     q: '¿Debo llevar algo a la cita?',

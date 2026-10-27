@@ -18,7 +18,7 @@
 }
 .fila:hover { transform: translateY(-3px); border-color: var(--hz-500); box-shadow: var(--shadow); }
 .fila__foto { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--hz-500); }
-.fila__text strong { display: block; font-family: var(--font-display); font-weight: 420; font-size: 1.5rem; line-height: 1.15; letter-spacing: -.01em; }
+.fila__text strong { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; line-height: 1.15; letter-spacing: -.025em; }
 .fila__text span { display: block; margin-top: 5px; max-width: 54ch; font-size: .98rem; line-height: 1.5; color: var(--ink-soft); }
 .fila__go {
   display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
@@ -40,7 +40,7 @@
 .detalle__main { display: grid; gap: clamp(44px, 6vw, 72px); }
 .detalle__main section > h2 { margin-bottom: 20px; }
 .detalle__aside { position: sticky; top: calc(var(--header-h) + 28px); }
-@media (max-width: 920px) { .detalle { grid-template-columns: 1fr; } .detalle__aside { position: static; order: -1; } }
+@media (max-width: 920px) { .detalle { grid-template-columns: 1fr; } .detalle__aside { position: static; } }
 
 .reserva-card {
   position: relative; overflow: hidden; display: grid; gap: 14px; padding: 30px;
@@ -87,7 +87,7 @@
 }
 .principios li:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
 .principios__ico { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; background: var(--marea-900); color: var(--hz-400); margin-bottom: 4px; }
-.principios h3 { font-family: var(--font-display); font-weight: 420; font-size: 1.55rem; line-height: 1.15; }
+.principios h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.55rem; line-height: 1.15; }
 .principios p { color: var(--ink-soft); max-width: 36ch; }
 @media (max-width: 820px) { .principios { grid-template-columns: 1fr; } }
 
@@ -108,7 +108,7 @@
 .datos > div { display: grid; gap: 6px; padding: 20px 24px; background: var(--bruma); border: 1px solid var(--line); border-left: 4px solid var(--hz-500); border-radius: var(--r); }
 .datos dt { display: flex; align-items: center; gap: 10px; font-size: .92rem; font-weight: 600; color: var(--ink-faint); }
 .datos dt svg { color: var(--hz-600); }
-.datos dd { font-family: var(--font-display); font-weight: 420; font-size: 1.45rem; line-height: 1.25; letter-spacing: -.01em; }
+.datos dd { font-family: var(--font-display); font-weight: 600; font-size: 1.45rem; line-height: 1.25; letter-spacing: -.025em; }
 .datos a:hover { color: var(--hz-700); text-decoration: underline; text-underline-offset: 4px; }
 .mapa__frame { aspect-ratio: 4 / 3; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; background: var(--celeste-50); box-shadow: var(--shadow); }
 .mapa__frame iframe { display: block; width: 100%; height: 100%; border: 0; }
@@ -135,3 +135,23 @@
   content: counter(s); flex: 0 0 28px; display: grid; place-items: center; width: 28px; height: 28px; margin-top: -1px;
   border-radius: 50%; background: var(--marea-900); color: var(--hz-300); font-size: .86rem; font-weight: 700;
 }
+
+/* --- Ilustración dentro de una ficha de tratamiento --- */
+.ilustracion { margin: 28px 0 0; }
+.ilustracion img { width: 100%; height: auto; border-radius: var(--r-lg); box-shadow: var(--shadow); background: #fff; }
+.ilustracion figcaption { margin-top: 12px; font-size: .92rem; color: var(--ink-faint); }
+
+/* --- Tratamiento anterior / siguiente --- */
+.vecinos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
+.vecinos a {
+  display: flex; align-items: center; gap: 14px; padding: 18px 22px; border-radius: var(--r);
+  background: #fff; border: 1px solid var(--line); font-weight: 650; line-height: 1.3;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.vecinos a:last-child { justify-content: flex-end; text-align: right; }
+.vecinos small { display: block; font-size: .82rem; font-weight: 600; color: var(--ink-faint); margin-bottom: 2px; }
+.vecinos svg { flex: 0 0 auto; color: var(--hz-600); }
+.vecinos a:hover { border-color: var(--hz-500); box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+@media (max-width: 560px) { .vecinos { grid-template-columns: 1fr; } }
+.ilustracion-par { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 8px; }
+.ilustracion-par .ilustracion { margin-top: 20px; }

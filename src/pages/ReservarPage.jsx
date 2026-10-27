@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { CalendarCheck, CheckCircle2, Clock, MessageCircle, Phone, Send } from 'lucide-react';
 import PageHeader from '../components/layout/PageHeader';
@@ -32,6 +32,17 @@ export default function ReservarPage() {
   const [error, setError] = useState('');
   const [enviado, setEnviado] = useState(null);
   const [enviando, setEnviando] = useState(false);
+  const okRef = useRef(null);
+  const formRef = useRef(null);
+
+  // Al fallar la validación, el foco va al primer campo con error: así se ve qué corregir, también con teclado o lector de pantalla.
+  useEffect(() => {
+    if (Object.values(errores).every((v) => !v)) return;
+    formRef.current?.querySelector('[aria-invalid="true"]')?.focus();
+  }, [errores]);
+
+  // Al enviar, la confirmación pasa a la vista y recibe el foco.
+  useEffect(() => { if (enviado) okRef.current?.focus(); }, [enviado]);
 
   const cambiar = (e) => {
     const { name, value, type, checked } = e.target;
@@ -98,7 +109,7 @@ export default function ReservarPage() {
       <section className="section section--bruma">
         <div className="container reservar">
           {enviado ? (
-            <div className="reservar__ok" role="status">
+            <div className="reservar__ok" role="status" ref={okRef} tabIndex={-1}>
               <CheckCircle2 size={44} aria-hidden="true" />
               <h2 className="display h2">Recibimos tu solicitud, {enviado.nombre.trim().split(/\s+/)[0]}</h2>
               <p className="lead">
@@ -113,7 +124,7 @@ export default function ReservarPage() {
               </div>
             </div>
           ) : (
-            <form className="form-card" onSubmit={enviar} noValidate>
+            <form className="form-card" onSubmit={enviar} noValidate ref={formRef}>
               <h2 className="display h3">Tus datos</h2>
               <p className="muted form-card__nota">
                 Los campos con <span className="req" aria-hidden="true">*</span><span className="sr-only">asterisco</span> son obligatorios.
@@ -130,7 +141,7 @@ export default function ReservarPage() {
                 </div>
                 <div className={`field${errores.telefono ? ' field--err' : ''}`}>
                   <label htmlFor="telefono">Teléfono <span className="req" aria-hidden="true">*</span></label>
-                  <input id="telefono" name="telefono" type="tel" value={datos.telefono} onChange={cambiar} autoComplete="tel"
+                  <input id="telefono" name="telefono" type="tel" inputMode="tel" value={datos.telefono} onChange={cambiar} autoComplete="tel"
                     placeholder="+56 9 ..." aria-required="true" aria-invalid={Boolean(errores.telefono)} aria-describedby="err-telefono" />
                   <FieldError mensaje={errores.telefono} id="err-telefono" />
                 </div>
@@ -159,6 +170,7 @@ export default function ReservarPage() {
                   <label htmlFor="fecha">Día que prefieres <span className="field__opt">(opcional)</span></label>
                   <input id="fecha" name="fecha" type="date" min={hoy()} value={datos.fecha} onChange={cambiar}
                     aria-invalid={Boolean(errores.fecha)} aria-describedby="err-fecha" />
+                  <small className="field__hint">Atendemos {CLINICA.horario.dias.toLowerCase()}.</small>
                   <FieldError mensaje={errores.fecha} id="err-fecha" />
                 </div>
                 <fieldset className="field field--choice">
@@ -184,6 +196,7 @@ export default function ReservarPage() {
                 <textarea id="mensaje" name="mensaje" value={datos.mensaje} onChange={cambiar}
                   placeholder="Por ejemplo: tengo dolor en una muela, o quiero cambiar una restauración."
                   aria-invalid={Boolean(errores.mensaje)} aria-describedby="err-mensaje" />
+                <small className={`field__hint${datos.mensaje.length > 1000 ? ' field__hint--err' : ''}`}>{datos.mensaje.length}/1000</small>
                 <FieldError mensaje={errores.mensaje} id="err-mensaje" />
               </div>
 

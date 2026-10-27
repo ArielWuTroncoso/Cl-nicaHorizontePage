@@ -1,6 +1,7 @@
 import { Clock, ExternalLink, Instagram, MapPin, MessageCircle, Navigation, Phone } from 'lucide-react';
 import PageHeader from '../components/layout/PageHeader';
 import BloqueReserva from '../components/common/BloqueReserva';
+import EstadoHorario from '../components/common/EstadoHorario';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { CLINICA, enlaceWhatsApp } from '../data/clinica';
 import { IMG } from '../data/imagenes';
@@ -28,7 +29,7 @@ export default function ContactoPage() {
             </div>
             <div>
               <dt><Clock size={20} aria-hidden="true" /> Horario de atención</dt>
-              <dd>{CLINICA.horario.dias}<br />{CLINICA.horario.horas}</dd>
+              <dd>{CLINICA.horario.dias}<br />{CLINICA.horario.horas}<EstadoHorario /></dd>
             </div>
             <div>
               <dt><Phone size={20} aria-hidden="true" /> Teléfono</dt>

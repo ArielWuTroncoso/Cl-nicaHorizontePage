@@ -23,18 +23,29 @@ guarda **solicitudes de hora** (`solicitud_cita`).
 
 ## Diseño
 
-Negro, azul y blanco, los colores del letrero de la fachada. La idea de "horizonte" sigue en los
-arcos azules concéntricos que asoman detrás de la portada, de las cabeceras y del cierre.
+Negro, azul y blanco, los colores del letrero de la fachada, con un aire clínico: una trama fina como
+papel de ficha, esquinas de mira y un visor de rayos X en la portada. Encabezado en dos niveles: franja
+negra con horario, teléfono, WhatsApp e Instagram, y una barra blanca con el logotipo grande.
 
 - **Colores** (variables en `src/index.css`): negro `#090D13` para cabecera, tratamientos, cierre y pie;
   azul del letrero `#0693C5` para acentos sobre negro; `#0579A8` en botones (texto blanco con contraste AA);
   azul marino `#082848` sólo como profundidad en degradados; blanco para las secciones de lectura.
-- **Tipografía:** Fraunces (títulos) y Figtree (texto), autoalojadas.
-- **Fotos:** salen de los afiches y la fachada de la clínica, recortadas y ampliadas con un modelo de
-  súper-resolución (EDSR). Están en `public/img/` y se declaran todas en `src/data/imagenes.js`.
-  Son de resolución limitada: conviene reemplazarlas por fotos reales (portada: `sonrisaRetrato`;
-  cierre: `sonrisaBanda`; primera visita: `dientePodio`; La clínica y Contacto: `fachada`).
-- **Movimiento:** una sola secuencia al cargar la portada (el arco y el pedestal suben). El resto
+- **Tipografía:** Sora (títulos) y Figtree (texto), autoalojadas.
+- **Fotos:** son las que entregó la clínica (paciente en control, puente sobre implantes, etapas de una
+  endodoncia), más la fachada y el molar sobre pedestal. Están en `public/img/` y se declaran todas en
+  `src/data/imagenes.js`. Para cambiar una, deja el archivo nuevo y ajusta el nombre ahí (portada y
+  cierres: `paciente` / `pacienteRetrato`; primera visita: `dientePodio`; La clínica y Contacto:
+  `fachada`; fichas de implantes, prótesis y endodoncias: `ilustracionTratamiento`). Las fotos son de
+  resolución media: cuando haya fotos propias del equipo, conviene reemplazarlas.
+- **Rayos X dentro de la clínica:** los datos y textos están en `RAYOS_X` (`src/data/clinica.js`); se
+  muestran en la portada, en La clínica, en el pie, en las preguntas frecuentes y en cada tratamiento
+  (`rayosX` en `src/data/tratamientos.js`). Las imágenes de diagnóstico (mandíbula, radiografía, molar)
+  llevan un mapa de color al azul de la marca para verse parte del mismo sistema.
+- **Abierto ahora:** `src/utils/horario.js` calcula si la clínica está abierta según el horario publicado
+  (hora de Santiago). Si cambia el horario, se ajusta en ese archivo y en `src/data/clinica.js`.
+- **Celular:** una barra fija al pie (Llamar, WhatsApp, Reservar) reemplaza al botón flotante; no aparece
+  en Reservar, Contacto ni en las páginas internas.
+- **Movimiento:** una sola secuencia al cargar la portada (el visor de rayos X sube y un haz de luz lo recorre una vez). El resto
   responde a acciones: el acordeón, las tarjetas y los botones. Respeta "reducir movimiento".
 - **Accesibilidad:** foco visible, enlace "Saltar al contenido", etiquetas y errores asociados
   a cada campo, contraste AA en texto.
@@ -47,10 +58,11 @@ arcos azules concéntricos que asoman detrás de la portada, de las cabeceras y 
 | Tratamientos, áreas, procesos y preguntas | `src/data/tratamientos.js` |
 | Datos estructurados para Google (`Dentist`) | `index.html` (actualizar a mano si cambian los datos) |
 | Fotos | `src/data/imagenes.js` y `public/img/` |
-| Logotipo | `src/components/brand/Logo.jsx` |
+| Logotipo | `public/img/logo-horizonte.svg` (se muestra desde `src/components/brand/Logo.jsx`) |
 
-> **Pendientes con la clínica:** (1) el logotipo es una reconstrucción vectorial a partir de la
-> fachada y los afiches: reemplazarlo por el archivo oficial en `Logo.jsx`; (2) los textos de los
+> **Pendientes con la clínica:** (1) el logotipo es una versión vectorial plana, redibujada a partir del
+> letrero (letra serif en el turquesa de la marca): si existe el archivo oficial, reemplazar
+> `public/img/logo-horizonte.svg`; (2) los textos de los
 > tratamientos son informativos y generales, y los de "La clínica" y "Primera visita" son una
 > propuesta: conviene que un odontólogo de Horizonte los revise; (3) faltan fotos del equipo y de
 > la consulta, y los nombres de los profesionales, para una sección "Equipo".

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { AREAS, TRATAMIENTOS, delArea, porSlug } from './tratamientos';
-import { CLINICA, FRANJAS, enlaceWhatsApp } from './clinica';
+import { CLINICA, FRANJAS, PREGUNTAS, RAYOS_X, enlaceWhatsApp } from './clinica';
 
 describe('tratamientos', () => {
   it('son los siete del afiche, con slugs únicos', () => {
@@ -23,6 +23,10 @@ describe('tratamientos', () => {
     AREAS.forEach((a) => expect(delArea(a.id).length).toBeGreaterThan(0));
   });
 
+  it('cada tratamiento explica para qué sirven los rayos X en su caso', () => {
+    TRATAMIENTOS.forEach((t) => expect(t.rayosX?.length, t.slug).toBeGreaterThan(30));
+  });
+
   it('porSlug devuelve el tratamiento o undefined', () => {
     expect(porSlug('implantes')?.nombre).toBe('Implantes dentales');
     expect(porSlug('no-existe')).toBeUndefined();
@@ -38,6 +42,11 @@ describe('datos de la clínica', () => {
 
   it('las franjas coinciden con las que valida el backend', () => {
     expect(FRANJAS.map((f) => f.id)).toEqual(['manana', 'tarde']);
+  });
+
+  it('los rayos X dentro de la clínica figuran en los datos y en las preguntas frecuentes', () => {
+    expect(RAYOS_X.puntos.length).toBeGreaterThanOrEqual(3);
+    expect(PREGUNTAS.some((p) => /rayos x/i.test(p.q))).toBe(true);
   });
 
   it('el teléfono visible corresponde al de marcado', () => {

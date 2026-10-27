@@ -1,13 +1,14 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { CalendarCheck, Clock, MessageCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CalendarCheck, Clock, MessageCircle } from 'lucide-react';
 import PageHeader from '../components/layout/PageHeader';
 import IconoTratamiento from '../components/brand/IconoTratamiento';
 import Faq from '../components/common/Faq';
 import BloqueReserva from '../components/common/BloqueReserva';
+import AvisoRayosX from '../components/common/AvisoRayosX';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { CLINICA, enlaceWhatsApp } from '../data/clinica';
 import { AREAS, TRATAMIENTOS, porSlug } from '../data/tratamientos';
-import { fotoTratamiento } from '../data/imagenes';
+import { fotoTratamiento, ilustracionesTratamiento } from '../data/imagenes';
 
 export default function TratamientoPage() {
   const { slug } = useParams();
@@ -18,6 +19,10 @@ export default function TratamientoPage() {
 
   const area = AREAS.find((a) => a.id === t.area);
   const otros = TRATAMIENTOS.filter((x) => x.slug !== t.slug);
+  const [principal, ...extras] = ilustracionesTratamiento(t.slug);
+  const pos = TRATAMIENTOS.findIndex((x) => x.slug === t.slug);
+  const anterior = TRATAMIENTOS[(pos - 1 + TRATAMIENTOS.length) % TRATAMIENTOS.length];
+  const siguiente = TRATAMIENTOS[(pos + 1) % TRATAMIENTOS.length];
 
   return (
     <>
@@ -38,6 +43,23 @@ export default function TratamientoPage() {
             <section aria-labelledby="que-es">
               <h2 id="que-es" className="display h3">En qué consiste</h2>
               <p className="lead">{t.descripcion}</p>
+              {principal && (
+                <figure className="ilustracion">
+                  <img src={principal.src} width={principal.width} height={principal.height} alt={principal.alt} loading="lazy" />
+                  <figcaption>{principal.pie}</figcaption>
+                </figure>
+              )}
+              {extras.length > 0 && (
+                <div className="ilustracion-par">
+                  {extras.map((e) => (
+                    <figure className="ilustracion" key={e.src}>
+                      <img src={e.src} width={e.width} height={e.height} alt={e.alt} loading="lazy" />
+                      <figcaption>{e.pie}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+              )}
+              <AvisoRayosX texto={`${t.rayosX} Si tu odontólogo la necesita, la tomamos aquí mismo, en la misma visita.`} />
             </section>
 
             <section aria-labelledby="para-quien">
@@ -89,6 +111,16 @@ export default function TratamientoPage() {
               </li>
             ))}
           </ul>
+          <nav className="vecinos" aria-label="Tratamiento anterior y siguiente">
+            <Link to={`/tratamientos/${anterior.slug}`} rel="prev">
+              <ArrowLeft size={18} aria-hidden="true" />
+              <span><small>Anterior</small>{anterior.nombre}</span>
+            </Link>
+            <Link to={`/tratamientos/${siguiente.slug}`} rel="next">
+              <span><small>Siguiente</small>{siguiente.nombre}</span>
+              <ArrowRight size={18} aria-hidden="true" />
+            </Link>
+          </nav>
         </div>
       </section>
 

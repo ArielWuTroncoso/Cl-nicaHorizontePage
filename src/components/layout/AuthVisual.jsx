@@ -1,13 +1,12 @@
 import { Check } from 'lucide-react';
 import Logo from '../brand/Logo';
-import Horizonte from '../brand/Horizonte';
 
 export default function AuthVisual({ titulo, texto, puntos = [] }) {
   return (
     <div className="auth__visual">
-      <Horizonte tono="oscuro" conDiente={false} className="auth__art" />
+      <div className="trama" aria-hidden="true" />
       <div className="auth__visual-inner">
-        <Logo size={52} tono="claro" />
+        <Logo ancho={230} tono="claro" />
         <h2 className="display h2">{titulo}</h2>
         <p>{texto}</p>
         <ul className="auth__points">

@@ -5,7 +5,7 @@ import Footer from './components/layout/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 import AccesoSecreto from './components/auth/AccesoSecreto';
 import LoadingScreen from './components/common/LoadingScreen';
-import WhatsAppFlotante from './components/common/WhatsAppFlotante';
+import BarraContacto from './components/common/BarraContacto';
 import { AuthProvider } from './context/AuthContext';
 import HomePage from './pages/HomePage';
 
@@ -52,7 +52,7 @@ export default function App() {
       </main>
 
       <Footer />
-      <WhatsAppFlotante />
+      <BarraContacto />
     </AuthProvider>
   );
 }

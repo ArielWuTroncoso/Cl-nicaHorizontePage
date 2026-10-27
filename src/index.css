@@ -63,17 +63,18 @@
   --glow:      0 0 0 1px rgba(45, 176, 224, .55), 0 18px 48px -14px rgba(6, 147, 197, .55);
 
   /* --- Tipografía --- */
-  --font-display: 'Fraunces Variable', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-display: 'Sora Variable', 'Figtree Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-ui: 'Figtree Variable', 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* --- Medidas --- */
-  --header-h: 80px;
+  --header-h: 88px;
+  --topbar-h: 40px;
   --container: 1200px;
   --gutter: clamp(20px, 5vw, 56px);
 
   color-scheme: light;
 }
-@media (max-width: 520px) { :root { --header-h: 68px; } }
+@media (max-width: 520px) { :root { --header-h: 72px; --topbar-h: 38px; } }
 
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; padding: 0; }
@@ -101,7 +102,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 ul, ol { list-style: none; }
 
 :focus-visible { outline: 3px solid var(--hz-500); outline-offset: 3px; border-radius: 6px; }
-.hdr :focus-visible, .section--dark :focus-visible, .section--azul :focus-visible, .cierre :focus-visible, .ftr :focus-visible, .pagehead :focus-visible, .hero :focus-visible { outline-color: var(--hz-300); }
+.section--dark :focus-visible, .section--azul :focus-visible, .cierre :focus-visible, .ftr :focus-visible, .pagehead :focus-visible, .hero :focus-visible { outline-color: var(--hz-300); }
 ::selection { background: var(--hz-400); color: var(--marea-950); }
 
 /* ===========================================================================
@@ -110,19 +111,18 @@ ul, ol { list-style: none; }
 
 .container { width: min(var(--container), 100% - var(--gutter) * 2); margin-inline: auto; }
 
-/* Títulos: serif ligera; el tamaño y el peso hacen la jerarquía. */
+/* Títulos: geometría limpia y peso firme; el tamaño y el interlineado hacen la jerarquía. */
 .display {
   font-family: var(--font-display);
-  font-weight: 380;
-  font-optical-sizing: auto;
-  letter-spacing: -.018em;
-  line-height: 1.04;
+  font-weight: 600;
+  letter-spacing: -.035em;
+  line-height: 1.08;
   color: var(--ink);
   text-wrap: balance;
 }
-.h1 { font-size: clamp(2.7rem, 6.6vw, 5.1rem); }
-.h2 { font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.08; }
-.h3 { font-size: clamp(1.5rem, 2.4vw, 1.9rem); line-height: 1.15; font-weight: 380; letter-spacing: -.012em; }
+.h1 { font-size: clamp(2.35rem, 5.4vw, 4.3rem); line-height: 1.04; }
+.h2 { font-size: clamp(1.8rem, 3.4vw, 2.7rem); line-height: 1.12; }
+.h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); line-height: 1.2; font-weight: 600; letter-spacing: -.025em; }
 .lead { font-size: clamp(1.08rem, 1.5vw, 1.25rem); line-height: 1.6; color: var(--ink-soft); max-width: 58ch; text-wrap: pretty; }
 .muted { color: var(--ink-soft); }
 
@@ -132,8 +132,21 @@ ul, ol { list-style: none; }
   font-size: .95rem; font-weight: 600; color: var(--hz-600);
 }
 .kicker::before {
-  content: ""; width: 9px; height: 9px; flex: 0 0 auto; border-radius: 50%;
-  border: 2px solid currentColor;
+  content: ""; width: 14px; height: 14px; flex: 0 0 auto;
+  background:
+    linear-gradient(currentColor, currentColor) center / 100% 3px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 3px 100% no-repeat;
+}
+
+/* Trama clínica: una cuadrícula fina, como el papel de una ficha, que se desvanece hacia un lado. */
+.trama {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(125, 204, 235, .075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 204, 235, .075) 1px, transparent 1px);
+  background-size: 56px 56px; background-position: center top;
+  -webkit-mask-image: radial-gradient(80% 95% at 80% 30%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(80% 95% at 80% 30%, #000 0%, transparent 75%);
 }
 
 /* Secciones: el padding vive sólo aquí para que ninguna otra regla lo pise. */

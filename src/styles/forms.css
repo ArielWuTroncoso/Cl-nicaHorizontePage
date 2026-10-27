@@ -55,7 +55,6 @@
 /* --- Acceso de administración --- */
 .auth { min-height: calc(100vh - var(--header-h)); display: grid; grid-template-columns: 1fr 1fr; background: #fff; }
 .auth__visual { position: relative; overflow: hidden; display: grid; place-content: center; padding: clamp(36px, 5vw, 72px); background: radial-gradient(70% 60% at 80% 100%, rgba(6, 147, 197, .4), transparent 70%), var(--marea-900); color: var(--on-dark); }
-.auth__art { position: absolute; left: -60px; right: -60px; bottom: 0; width: calc(100% + 120px); height: auto; pointer-events: none; opacity: .8; }
 .auth__visual-inner { position: relative; z-index: 1; max-width: 440px; display: grid; gap: 4px; }
 .auth__visual h2 { color: #fff; margin: 28px 0 14px; }
 .auth__visual p { color: var(--on-dark-soft); line-height: 1.6; margin-bottom: 26px; }
@@ -126,3 +125,7 @@
 .admin__state { display: inline-block; padding: 4px 12px; border-radius: var(--r-pill); font-size: .82rem; font-weight: 650; }
 .admin__state--on { background: var(--ok-bg); color: var(--ok); }
 .admin__state--off { background: var(--warn-bg); color: var(--warn); }
+
+.field__hint { display: block; margin-top: 6px; font-size: .86rem; color: var(--ink-faint); }
+.field__hint--err { color: var(--err); font-weight: 600; }
+.reservar__ok:focus { outline: none; }

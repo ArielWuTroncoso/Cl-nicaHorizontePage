@@ -26,6 +26,7 @@ export const AREAS = [
 export const TRATAMIENTOS = [
   {
     slug: 'carillas',
+    rayosX: 'Antes de planificar las carillas, una radiografía permite revisar la salud de los dientes y de sus raíces.',
     nombre: 'Carillas dentales',
     corto: 'Carillas',
     area: 'estetica',
@@ -52,6 +53,7 @@ export const TRATAMIENTOS = [
   },
   {
     slug: 'restauraciones',
+    rayosX: 'La radiografía muestra caries entre dientes o bajo una restauración antigua, que no se ven a simple vista.',
     nombre: 'Restauraciones',
     corto: 'Restauraciones',
     area: 'cuidado',
@@ -77,6 +79,7 @@ export const TRATAMIENTOS = [
   },
   {
     slug: 'limpiezas-dentales',
+    rayosX: 'Si corresponde, una radiografía de control permite revisar el hueso que sostiene tus dientes y las caries entre piezas.',
     nombre: 'Limpiezas dentales',
     corto: 'Limpiezas',
     area: 'cuidado',
@@ -102,6 +105,7 @@ export const TRATAMIENTOS = [
   },
   {
     slug: 'implantes',
+    rayosX: 'La radiografía permite evaluar el hueso disponible y la posición de los dientes vecinos antes de planificar el implante.',
     nombre: 'Implantes dentales',
     corto: 'Implantes',
     area: 'reponer',
@@ -128,6 +132,7 @@ export const TRATAMIENTOS = [
   },
   {
     slug: 'endodoncias',
+    rayosX: 'La radiografía muestra la forma de las raíces y de los conductos, y se usa antes, durante y después del tratamiento.',
     nombre: 'Endodoncias',
     corto: 'Endodoncias',
     area: 'cuidado',
@@ -154,6 +159,7 @@ export const TRATAMIENTOS = [
   },
   {
     slug: 'coronas',
+    rayosX: 'Una radiografía revisa la raíz y el estado del diente antes de cubrirlo con una corona.',
     nombre: 'Coronas dentales',
     corto: 'Coronas',
     area: 'reponer',
@@ -180,6 +186,7 @@ export const TRATAMIENTOS = [
   },
   {
     slug: 'protesis',
+    rayosX: 'La radiografía ayuda a evaluar los dientes y el hueso que van a sostener la prótesis.',
     nombre: 'Prótesis dentales',
     corto: 'Prótesis',
     area: 'reponer',

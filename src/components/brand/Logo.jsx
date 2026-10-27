@@ -1,14 +1,11 @@
 import { DIENTE } from './Diente';
 
 /**
- * Logotipo de Horizonte: el diente dentro del anillo con sus cuatro puntos
- * cardinales (como en la fachada), y el nombre en serif.
- *
- * Es una reconstrucción vectorial a partir de la fachada y los afiches. Cuando la
- * clínica entregue su archivo oficial, basta reemplazar `Marca` por esa imagen.
+ * `Marca`: el diente dentro del anillo con sus cuatro puntos cardinales, en vectores.
+ * Se usa como viñeta en la banda de tratamientos.
  *
  *   tono="color"  → turquesa sobre fondo claro
- *   tono="claro"  → blanco sobre fondo oscuro
+ *   tono="claro"  → celeste sobre fondo oscuro
  */
 export function Marca({ size = 44, tono = 'color', className = '' }) {
   const trazo = tono === 'claro' ? '#2DB0E0' : 'var(--hz-600)';
@@ -26,14 +23,20 @@ export function Marca({ size = 44, tono = 'color', className = '' }) {
   );
 }
 
-export default function Logo({ size = 44, tono = 'color', conLema = true, className = '' }) {
+/**
+ * Logotipo de Horizonte con la leyenda debajo: el nombre en letra plana (serif de trazo fino, en el
+ * turquesa del letrero) y el diente dentro del anillo en lugar de la "o".
+ * El archivo es `public/img/logo-horizonte.svg`, vectorial y con fondo transparente: nítido a cualquier
+ * tamaño y válido sobre claro y sobre oscuro. Si la clínica entrega su archivo oficial, basta reemplazarlo ahí.
+ *
+ *   tono="color"  → leyenda oscura, para fondo claro
+ *   tono="claro"  → leyenda blanca, para fondo oscuro
+ */
+export default function Logo({ ancho = 220, tono = 'color', conLema = true, className = '' }) {
   return (
-    <span className={`logo logo--${tono} ${className}`.trim()}>
-      <Marca size={size} tono={tono} />
-      <span className="logo__words">
-        <span className="logo__name">Horizonte</span>
-        {conLema && <span className="logo__sub">Centro odontológico</span>}
-      </span>
+    <span className={`logo logo--${tono} ${className}`.trim()} style={{ '--logo-w': `${ancho}px` }}>
+      <img className="logo__img" src="/img/logo-horizonte.svg" width="475" height="100" alt="Horizonte" />
+      {conLema && <span className="logo__sub">Centro odontológico</span>}
     </span>
   );
 }

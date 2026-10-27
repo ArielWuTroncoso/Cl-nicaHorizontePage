@@ -4,8 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
 /* Tipografías autoalojadas (sin servicios de terceros, sin salto de fuente):
-   Fraunces para los títulos y Figtree para el texto. */
-import '@fontsource-variable/fraunces/opsz.css';
+   Sora para los títulos y Figtree para el texto. */
+import '@fontsource-variable/sora';
 import '@fontsource-variable/figtree';
 
 import './index.css';

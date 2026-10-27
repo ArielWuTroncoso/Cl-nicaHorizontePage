@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, HeartHandshake, Instagram, MessageSquareText, ClipboardList } from 'lucide-react';
 import PageHeader from '../components/layout/PageHeader';
 import BloqueReserva from '../components/common/BloqueReserva';
+import SeccionRayosX from '../components/common/SeccionRayosX';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { CLINICA } from '../data/clinica';
 import { IMG } from '../data/imagenes';
@@ -30,7 +31,7 @@ export default function ClinicaPage() {
       <section className="section section--white">
         <div className="container split">
           <figure className="foto foto--ancha">
-            <img src={IMG.sonrisaBanda.src} width={IMG.sonrisaBanda.width} height={IMG.sonrisaBanda.height} alt={IMG.sonrisaBanda.alt} loading="lazy" />
+            <img src={IMG.sillon.src} width={IMG.sillon.width} height={IMG.sillon.height} alt={IMG.sillon.alt} loading="lazy" />
           </figure>
           <div className="split__text">
             <h2 className="display h2">{CLINICA.lema}</h2>
@@ -46,6 +47,8 @@ export default function ClinicaPage() {
           </div>
         </div>
       </section>
+
+      <SeccionRayosX id="rx-clinica" />
 
       <section className="section section--bruma">
         <div className="container">

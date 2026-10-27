@@ -1,3 +1,4 @@
+import EstadoHorario from '../common/EstadoHorario';
 import { Link } from 'react-router-dom';
 import { Clock, Instagram, MapPin, MessageCircle, Phone } from 'lucide-react';
 import Logo from '../brand/Logo';
@@ -11,8 +12,8 @@ export default function Footer() {
       <div className="container">
         <div className="ftr__main">
           <div className="ftr__brand">
-            <Logo size={52} tono="claro" />
-            <p>{CLINICA.lema}. Atención odontológica en Concepción.</p>
+            <Logo ancho={230} tono="claro" />
+            <p>{CLINICA.lema}. Atención odontológica en Concepción, con rayos X dentro de la clínica.</p>
             <a className="ftr__ig" href={CLINICA.instagram.url} target="_blank" rel="noreferrer noopener">
               <Instagram size={18} /> {CLINICA.instagram.usuario}
             </a>
@@ -36,7 +37,7 @@ export default function Footer() {
               </li>
               <li>
                 <Clock size={18} aria-hidden="true" />
-                <span>{CLINICA.horario.dias}<br />{CLINICA.horario.horas}</span>
+                <span>{CLINICA.horario.dias}<br />{CLINICA.horario.horas}<EstadoHorario /></span>
               </li>
               <li>
                 <Phone size={18} aria-hidden="true" />

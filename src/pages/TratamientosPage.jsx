@@ -1,8 +1,10 @@
 import PageHeader from '../components/layout/PageHeader';
 import FilaTratamiento from '../components/common/FilaTratamiento';
 import BloqueReserva from '../components/common/BloqueReserva';
+import AvisoRayosX from '../components/common/AvisoRayosX';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { AREAS, delArea } from '../data/tratamientos';
+import { RAYOS_X } from '../data/clinica';
 import { IMG } from '../data/imagenes';
 
 export default function TratamientosPage() {
@@ -17,7 +19,7 @@ export default function TratamientosPage() {
         titulo="Tratamientos"
         descripcion="Siete tratamientos para cuidar, reparar y reponer tus dientes. Elige uno para ver en qué consiste y cómo lo hacemos."
         migas={[{ label: 'Tratamientos' }]}
-        imagen={{ ...IMG.dientePodio, forma: 'tarjeta' }}
+        imagen={{ ...IMG.molar, forma: 'tarjeta' }}
       />
 
       <section className="section section--bruma">
@@ -33,6 +35,7 @@ export default function TratamientosPage() {
               </ul>
             </div>
           ))}
+          <AvisoRayosX texto={`${RAYOS_X.resumen} ${RAYOS_X.detalle}`} />
           <p className="nota">
             La información es general. Qué tratamiento corresponde, y cómo, lo define tu odontólogo después de evaluarte.
           </p>
