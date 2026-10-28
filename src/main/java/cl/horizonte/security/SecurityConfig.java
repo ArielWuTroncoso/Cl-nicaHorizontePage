@@ -30,7 +30,7 @@ public class SecurityConfig {
     public static final String[] RUTAS_SPA = {
             "/", "/index.html", "/tratamientos", "/tratamientos/**", "/clinica",
             "/reservar", "/contacto", "/acceso", "/admin",
-            "/assets/**", "/favicon.svg", "/favicon.ico", "/error"
+            "/assets/**", "/img/**", "/marca/**", "/favicon.svg", "/favicon.ico", "/favicon.png", "/apple-touch-icon.png", "/error"
     };
 
     @Bean

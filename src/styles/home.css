@@ -279,9 +279,9 @@
 .rx__nota { font-size: .94rem; color: var(--on-dark-soft); }
 .rx__visual { position: relative; padding: 0 0 46px 0; }
 .rx__placa img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
-.rx__molar { position: absolute; right: -14px; bottom: 0; width: 34%; margin: 0; }
+.rx__molar { position: absolute; right: 18px; bottom: 0; width: 34%; margin: 0; }
 .rx__molar img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 22px; border: 4px solid #06101C; box-shadow: 0 0 0 1px var(--hz-400), 0 28px 50px -18px rgba(0, 0, 0, .85); }
-@media (max-width: 900px) { .rx { grid-template-columns: 1fr; } .rx__visual { max-width: 600px; } .rx__molar { right: -6px; width: 30%; } }
+@media (max-width: 900px) { .rx { grid-template-columns: 1fr; } .rx__visual { max-width: 600px; } .rx__molar { right: 12px; width: 30%; } }
 
 /* --- Aviso de rayos X en cada tratamiento --- */
 .rx-aviso { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 18px; align-items: start; margin-top: 28px; padding: 22px 24px; border-radius: var(--r); background: linear-gradient(135deg, var(--marea-900), #0A2E4D); color: var(--on-dark); border: 1px solid var(--line-dark); border-left: 4px solid var(--hz-500); }
